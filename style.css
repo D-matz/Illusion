@@ -1,0 +1,11 @@
+#main {
+  width: 400px;
+  height: 150px;
+  border: 1px solid #000000;
+  display: flex;
+}
+
+#main div {
+  width: 70px;
+  height: 70px;
+}
