@@ -1,0 +1,206 @@
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      a:link {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:visited {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a:active {
+        text-decoration: underline;
+      }
+
+      /* Set height of body and the document to 100% */
+      body,
+      html {
+        font-family: Arial;
+        scroll-behavior: smooth;
+      }
+
+
+      .center {
+        display: inline-block;
+        top: 0;
+        font: Ubuntu;
+        text-align: center;
+        height: 250px;
+        width: 100%;
+      }
+
+      .container {
+        text-align: center;
+        z-index: 1;
+      }
+
+      .container2 {
+        text-align: center;
+        z-index: -1;
+      }
+
+      .container>div {
+        display: inline-block;
+        /* if you need IE7 support */
+        *display: inline;
+        zoom: 1
+      }
+
+      .container2>div {
+          width: 14.2857143%;
+          height: 100px;
+          display: inline-block;
+          text-align: center;
+          /* if you need IE7 support */
+          *display: inline;
+          zoom: 1
+        }
+
+       .iconic {
+         display: table;
+         margin: auto;
+       }
+
+      .outer{
+        height: 130px;
+        width: 100%;
+      }
+      .outer2{
+              height: 90px;
+              width: 100%;
+            }
+
+
+.sidenav {
+  height: 200px;
+  width: 160px;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 10px 0px 0px 0px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+      .sticky {
+        position: fixed;
+        top: 13.75px;
+        width: 100%;
+      }
+
+    .sticky2 {
+      position: fixed;
+      top: 143.75px;
+      width: 100%;
+    }
+
+    .sticky3 {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+          }
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+.sticky2 + .content {
+  padding-top: 60px;
+}
+
+.sticky3 + .content {
+  padding-top: 60px;
+}
+
+      /* Style tab links */
+      .tablink {
+        border: none;
+        background: none;
+        outline: none;
+        cursor: pointer;
+        padding: none;
+        margin: none;
+        width: 14.2857143%;
+      }
+
+      .tablink:hover {
+transform: scale(1.25);
+      }
+
+     .tabtext {
+         height: 40px;
+         text-align: center;
+         vertical-align: top;
+         border: none;
+         background: none;
+         outline: none;
+         padding: 14px 16px;
+         font-size: 1.5vw;
+         width: 14.2857143%;
+         cursor: default;
+       }
+
+.title{
+    font-size: 20px;
+    text-align: center;
+}
+
+
+      /* Style the tab content (and add height:100% for full page content) */
+      .tabcontent {
+        padding: 10px;
+        text-align: left;
+        display: none;
+        height: 100%;
+     }
+
+
+
+@media only screen and (max-width: 770px){
+  .center{
+    display: none;
+  }
+  .container2{
+    display: none;
+  }
+  .outer2{
+    display: none;
+  }
+
+  .tablink {
+          transform: scale(0.5);
+          border: none;
+          background: none;
+          outline: none;
+          cursor: pointer;
+          padding: none;
+          margin: none;
+          width: 14.2857143%;
+        }
+
+        .tablink:hover {
+  transform: scale(0.625);
+        }
+}
