@@ -176,7 +176,7 @@ function nextTurn(){
 }
 
 function startGame() {
-document.getElementById("inst").innerHTML = "x to doubt, k to accept"; //???
+document.getElementById("inst").innerHTML = "x to doubt, k to accept";
   gameStarted = true;
   var p = document.getElementById("players").value;
   if(p>1&&p<6)
