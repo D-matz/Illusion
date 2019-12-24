@@ -104,14 +104,25 @@ if(gameStarted)
                last = players-1;
            }
            playerPoints[last]++;
+           if(playerPoints[last]==3)
+           {
+                alert("player "+(last+1)+" wins!");
+                location.reload();
+           }
        }
        else
        {
            console.log("not in order");
            playerPoints[turn]++;
+           if(playerPoints[turn]==3)
+           {
+                alert("player "+(turn+1)+" wins!");
+                location.reload();
+           }
        }
        writeScores();
        clearcards();
+       shuffleCards(35);
        addcard();
        nextTurn();
     }
