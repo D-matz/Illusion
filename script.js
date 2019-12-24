@@ -143,7 +143,7 @@ function inOrder(){
     for(var i=0;i<on-1;i++)
     {
         console.log(sizeOrder[i]+" "+sizeOrder[i+1]);
-        if(sizeOrder[i]>sizeOrder[i+1])
+        if(sizeOrder[i]<sizeOrder[i+1])
         {
             console.log("NOT IN ORDER");
             order = false;
