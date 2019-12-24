@@ -12,6 +12,7 @@ var turn = 0;
 var changing = false;
 var gameStarted = false;
 var sizes = [];
+var showingCards = false;
 function shuffleCards(n)
 {
     var order = [];
@@ -29,6 +30,8 @@ function shuffleCards(n)
             order[j] = order[j+1];
         }
     }
+    sizes = [];
+    sizeOrder = [];
     for(var i=0;i<=n;i++)
     {
         cards[i].style.backgroundImage = "url('"+"cards/"+ret[i]+".png"+"')";
@@ -59,67 +62,82 @@ function swap(n){
 window.addEventListener("keydown", function (e) {
 if(gameStarted)
 {
-    console.log("sizes: ");
-    for(var i=0;i<on;i++)
+    if(!showingCards)
     {
-        console.log(sizeOrder[i]);
-    }
-    if(e.keyCode == 40 && changing) //down
-    {
-    console.log(placing+" "+on);
-        if(placing+1<on)
+        console.log("sizes: ");
+        for(var i=0;i<on;i++)
         {
-            e.preventDefault();
-            swap(placing);
-            placing++;
+            console.log(sizeOrder[i]);
+        }
+        if(e.keyCode == 40 && changing) //down
+        {
+        console.log(placing+" "+on);
+            if(placing+1<on)
+            {
+                e.preventDefault();
+                swap(placing);
+                placing++;
+            }
+        }
+        else if(e.keyCode == 38 && changing) //up
+        {
+            if(placing>=1)
+            {
+                e.preventDefault();
+                swap(placing-1);
+                placing--;
+            }
+        }
+        else if(e.keyCode == 13 && changing) //enter
+        {
+            nextTurn();
+        }
+        else if(e.keyCode == 75 && !changing) //k
+        {
+            addcard();
+            changing = true;
+            document.getElementById("inst").innerHTML = "move up/down then enter";
+        }
+        else if(e.keyCode == 88 && !changing) //x
+        {
+           if(inOrder())
+           {
+               console.log("in order");
+               var last = turn-1;
+               if(turn==0)
+               {
+                   last = players-1;
+               }
+               document.getElementById("turn").innerHTML = "in order - point player "+(last+1);
+               playerPoints[last]++;
+               if(playerPoints[last]==3)
+               {
+                    alert("player "+(last+1)+" wins!");
+                    location.reload();
+               }
+           }
+           else
+           {
+               console.log("not in order");
+               playerPoints[turn]++;
+               document.getElementById("turn").innerHTML = "not in order - point player "+(turn+1);
+               if(playerPoints[turn]==3)
+               {
+                    alert("player "+(turn+1)+" wins!");
+                    location.reload();
+               }
+           }
+            showingCards = true;
+            for(var i=0;i<on;i++)
+            {
+                cards[i].innerHTML = "total "+colors[color]+" pixels: "+sizeOrder[i];
+            }
+            document.getElementById("inst").innerHTML = "f for new cards";
         }
     }
-    else if(e.keyCode == 38 && changing) //up
+    else if(e.keyCode == 70)//flip cards
     {
-        if(placing>=1)
-        {
-            e.preventDefault();
-            swap(placing-1);
-            placing--;
-        }
-    }
-    else if(e.keyCode == 13 && changing) //enter
-    {
-        nextTurn();
-    }
-    else if(e.keyCode == 75 && !changing) //k
-    {
-        addcard();
-        changing = true;
-        document.getElementById("inst").innerHTML = "move up/down then enter";
-    }
-    else if(e.keyCode == 88 && !changing) //x
-    {
-       if(inOrder())
-       {
-           console.log("in order");
-           var last = turn-1;
-           if(turn==0)
-           {
-               last = players-1;
-           }
-           playerPoints[last]++;
-           if(playerPoints[last]==3)
-           {
-                alert("player "+(last+1)+" wins!");
-                location.reload();
-           }
-       }
-       else
-       {
-           console.log("not in order");
-           playerPoints[turn]++;
-           if(playerPoints[turn]==3)
-           {
-                alert("player "+(turn+1)+" wins!");
-                location.reload();
-           }
-       }
+       showingCards = false;
        writeScores();
        clearcards();
        shuffleCards(35);
@@ -135,6 +153,7 @@ function addcard(){
     cards[on].style.order = on;
     cardAt.push(on);
     placing = on;
+    console.log(color+" "+colors[color]+" "+sizes);
     sizeOrder.push(sizes[on][color]);
     cards[on].scrollIntoView();
     on++;
@@ -143,10 +162,12 @@ function addcard(){
 function clearcards(){
     for(var i=0;i<on;i++)
     {
+        cards[i].innerHTML = "";
         cards[i].style.display = "none";
     }
     cardAt = [];
     on = 0;
+    setColor();
 }
 
 function inOrder(){
@@ -193,10 +214,14 @@ function startGame() {
     turn = 0;
     document.getElementById("turn").innerHTML = "turn: player 1";
     addcard();
+    setColor();
+  }
+}
+
+function setColor(){
     color = Math.floor(Math.random()*4);
     document.getElementById("header").style.backgroundColor = colors[color];
     document.getElementById("header").style.backgroundImage = "linear-gradient("+colors[color]+", white)";
-  }
 }
 
 function writeScores(){
