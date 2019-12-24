@@ -7,7 +7,7 @@ public class Count {
     public static void main (String [] args)
     {
         int images = 35;
-        System.out.print("var sizes=[");
+        System.out.print("var cardSizes=[");
         for(int i=0;i<=images;i++)
         {
             File file = new File("cards/"+i+".png");
@@ -44,6 +44,9 @@ public class Count {
                     else if(color == -4096)
                     {
                         yellowCount++;
+                    }
+                    else if(color != -1){
+              //          System.out.println(i+" "+color);
                     }
                 }
             }
