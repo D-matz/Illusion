@@ -10,8 +10,6 @@
 #main div {
   width: 250px;
   height: 350px;
-  margin: 5px;
-  margin: auto;
 }
 
 html {
@@ -32,11 +30,11 @@ html {
     position: sticky;
     top: 0;
     margin: auto;
-    width: 270px;
+    width: 250px;
     height: 100px;
     line-height: 0;
 }
 
 .short{
-    width: 30px;
+    width: 25px;
 }
