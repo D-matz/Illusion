@@ -23,7 +23,7 @@ function shuffleCards(n)
     var ret = [];
     for(var o=n;o>=0;o--)
     {
-        var rand = Math.floor(Math.random()*o);
+        var rand = Math.floor(Math.random()*(o+1));
         ret.push(order[rand]);
         for(var j=rand;j<=n;j++)
         {
@@ -64,7 +64,7 @@ if(gameStarted)
 {
     if(!showingCards)
     {
-        console.log("sizes: ");
+        console.log("these are the right sizes: ");
         for(var i=0;i<on;i++)
         {
             console.log(sizeOrder[i]);
@@ -128,11 +128,13 @@ if(gameStarted)
                }
            }
             showingCards = true;
+            document.getElementById("inst").innerHTML = "f for new cards";
             for(var i=0;i<on;i++)
             {
-                cards[i].innerHTML = "total "+colors[color]+" pixels: "+sizeOrder[i];
+                var c = Number(cards[i].style.order);
+                console.log("order "+c);
+                cards[i].innerHTML = "total "+colors[color]+" pixels: "+sizeOrder[c];
             }
-            document.getElementById("inst").innerHTML = "f for new cards";
         }
     }
     else if(e.keyCode == 70)//flip cards
@@ -179,7 +181,6 @@ function inOrder(){
         {
             console.log("NOT IN ORDER");
             order = false;
-            i = on;
         }
     }
     return order;
