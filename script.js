@@ -38,6 +38,15 @@ function shuffleCards(n)
         //console.log(i+" "+cards[i].style.backgroundImage);
         sizes.push(cardSizes[ret[i]]);
     }
+    for(var i=0;i<=n;i++)
+    {
+        var scale = 0.5+Math.random()/2;
+        cards[i].style.transform = "scale("+scale+")";
+        for(var f=0;f<4;f++)
+        {
+            sizes[i][f] = Math.floor(sizes[i][f]*scale);
+        }
+    }
 }
 shuffleCards(35);
 
