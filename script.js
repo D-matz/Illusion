@@ -40,7 +40,7 @@ function shuffleCards(n)
     }
     for(var i=0;i<=n;i++)
     {
-        var scale = 0.5+Math.random()/2;
+ //       var scale = 0.5+Math.random()/2;
  //      cards[i].style.transform = "scale("+scale+")";
         for(var f=0;f<4;f++)
         {
