@@ -24,6 +24,7 @@ html {
     border-width: 5px;
     border-color: black;
     z-index: -1;
+    font-size: 30px;
 }
 
 .center{

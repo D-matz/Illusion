@@ -35,16 +35,16 @@ function shuffleCards(n)
     for(var i=0;i<=n;i++)
     {
         cards[i].style.backgroundImage = "url('"+"cards/"+ret[i]+".png"+"')";
-        //console.log(i+" "+cards[i].style.backgroundImage);
+        ////console.log(i+" "+cards[i].style.backgroundImage);
         sizes.push(cardSizes[ret[i]]);
     }
     for(var i=0;i<=n;i++)
     {
- //       var scale = 0.5+Math.random()/2;
- //      cards[i].style.transform = "scale("+scale+")";
+        var scale = 0.5+Math.random()/2;
+       cards[i].style.transform = "scale("+scale+")";
         for(var f=0;f<4;f++)
         {
-         //   sizes[i][f] = Math.floor(sizes[i][f]*scale);
+            sizes[i][f] = Math.floor(sizes[i][f]*scale);
         }
     }
 }
@@ -59,10 +59,10 @@ function swap(n){
     temp = sizeOrder[place];
     sizeOrder[place] = sizeOrder[place+1];
     sizeOrder[place+1] = temp;
-    console.log("sizes: ");
+    //console.log("sizes: ");
     for(var i=0;i<on;i++)
     {
-        console.log(i+" "+sizeOrder[i]);
+        //console.log(i+" "+sizeOrder[i]);
     }
     cards[cardAt[place]].style.order = place;
     cards[cardAt[place+1]].style.order = place+1;
@@ -73,19 +73,21 @@ if(gameStarted)
 {
     if(!showingCards)
     {
-        console.log("these are the right sizes: ");
+        //console.log("these are the right sizes: ");
         for(var i=0;i<on;i++)
         {
-            console.log(sizeOrder[i]);
+            //console.log(sizeOrder[i]);
         }
         if(e.keyCode == 40 && changing) //down
         {
-        console.log(placing+" "+on);
+        //console.log(placing+" "+on);
             if(placing+1<on)
             {
                 e.preventDefault();
                 swap(placing);
                 placing++;
+                window.scrollBy(0, 350);
+                e.preventDefault();
             }
         }
         else if(e.keyCode == 38 && changing) //up
@@ -95,6 +97,8 @@ if(gameStarted)
                 e.preventDefault();
                 swap(placing-1);
                 placing--;
+                window.scrollBy(0, -350);
+                e.preventDefault();
             }
         }
         else if(e.keyCode == 13 && changing) //enter
@@ -111,7 +115,7 @@ if(gameStarted)
         {
            if(inOrder())
            {
-               console.log("in order");
+               //console.log("in order");
                var last = turn-1;
                if(turn==0)
                {
@@ -127,7 +131,7 @@ if(gameStarted)
            }
            else
            {
-               console.log("not in order");
+               //console.log("not in order");
                playerPoints[turn]++;
                document.getElementById("turn").innerHTML = "not in order - point player "+(turn+1);
                if(playerPoints[turn]==3)
@@ -141,7 +145,7 @@ if(gameStarted)
             for(var i=0;i<on;i++)
             {
                 var c = Number(cards[i].style.order);
-                console.log("order "+c);
+                //console.log("order "+c);
                 cards[i].innerHTML = "total "+colors[color]+" pixels: "+sizeOrder[c];
             }
         }
@@ -159,12 +163,12 @@ if(gameStarted)
 })
 
 function addcard(){
-    //console.log(on+" "+cards[on]);
+    ////console.log(on+" "+cards[on]);
     cards[on].style.display = "block";
     cards[on].style.order = on;
     cardAt.push(on);
     placing = on;
-    console.log(color+" "+colors[color]+" "+sizes);
+    //console.log(color+" "+colors[color]+" "+sizes);
     sizeOrder.push(sizes[on][color]);
     cards[on].scrollIntoView();
     on++;
@@ -185,10 +189,10 @@ function inOrder(){
     var order = true;
     for(var i=0;i<on-1;i++)
     {
-        console.log(sizeOrder[i]+" "+sizeOrder[i+1]);
+        //console.log(sizeOrder[i]+" "+sizeOrder[i+1]);
         if(sizeOrder[i]<sizeOrder[i+1])
         {
-            console.log("NOT IN ORDER");
+            //console.log("NOT IN ORDER");
             order = false;
         }
     }
@@ -213,7 +217,7 @@ function startGame() {
     document.getElementById("inst").innerHTML = "x to doubt, k to accept";
     gameStarted = true;
     clearcards();
-    console.log(p+" "+on);
+    //console.log(p+" "+on);
     players = p;
     playerPoints = [];
     for(var i=0;i<players;i++)
